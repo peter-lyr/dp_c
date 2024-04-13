@@ -304,7 +304,7 @@ require 'which-key'.register {
   ['<leader>'] = {
     c = {
       name = 'dp_c',
-      [';'] = { function() M.cmake() end, 'cmake', mode = { 'n', 'v', }, silent = true, },
+      [';'] = { function() B.sel_run(M) end, 'dp_c', mode = { 'n', 'v', }, silent = true, },
     },
   },
 }
