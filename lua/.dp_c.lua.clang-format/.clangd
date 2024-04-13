@@ -1,0 +1,2 @@
+CompileFlags:
+  Add: [-Wunused-variable,-Wunused-but-set-variable,-Wunused-function]
