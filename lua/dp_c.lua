@@ -18,10 +18,10 @@ M.deleting = 'deleting build dir'
 M.cmake_dir = B.get_source_dot_dir(M.source, 'py')
 M.clang_format_dir = B.get_source_dot_dir(M.source, 'clang-format')
 
-M.c2cmake_py = B.get_filepath(M.cmake_dir, 'c2cmake.py').filename
-M.cbp2cmake_py = B.get_filepath(M.cmake_dir, 'cbp2cmake.py').filename
-M._clang_format = B.get_filepath(M.clang_format_dir, '.clang-format').filename
-M._clangd = B.get_filepath(M.clang_format_dir, '.clangd').filename
+M.c2cmake_py = B.get_file(M.cmake_dir, 'c2cmake.py')
+M.cbp2cmake_py = B.get_file(M.cmake_dir, 'cbp2cmake.py')
+M._clang_format = B.get_file(M.clang_format_dir, '.clang-format')
+M._clangd = B.get_file(M.clang_format_dir, '.clangd')
 
 local f = io.popen 'wmic cpu get NumberOfCores'
 if f then
@@ -232,7 +232,7 @@ function M._gcc_do(run_way, cur_file, fname, exe_name)
 end
 
 function M.gcc_start()
-  local cur_file = B.rep(B.buf_get_name_0())
+  local cur_file = B.rep(B.buf_get_name())
   local fname = B.get_only_name(cur_file)
   local exe = string.sub(fname, 1, #fname - 2) .. '.exe'
   local exe_name = B.get_only_name(exe)
@@ -240,7 +240,7 @@ function M.gcc_start()
 end
 
 function M.gcc_start_silent()
-  local cur_file = B.rep(B.buf_get_name_0())
+  local cur_file = B.rep(B.buf_get_name())
   local fname = B.get_only_name(cur_file)
   local exe = string.sub(fname, 1, #fname - 2) .. '.exe'
   local exe_name = B.get_only_name(exe)
@@ -248,7 +248,7 @@ function M.gcc_start_silent()
 end
 
 function M.gcc_asyncrun()
-  local cur_file = B.rep(B.buf_get_name_0())
+  local cur_file = B.rep(B.buf_get_name())
   local fname = B.get_only_name(cur_file)
   local exe = string.sub(fname, 1, #fname - 2) .. '.exe'
   local exe_name = B.get_only_name(exe)
@@ -273,7 +273,7 @@ end
 function M._cmake_do(proj, force)
   proj = B.rep(proj)
   if not force and #proj == 0 then
-    B.notify_info('not in a project: ' .. B.rep(B.buf_get_name_0()))
+    B.notify_info('not in a project: ' .. B.rep(B.buf_get_name()))
     return
   end
   local cbps = M._get_cbps(proj)
