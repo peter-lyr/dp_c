@@ -300,9 +300,11 @@ function M.cmake()
   end)
 end
 
-require 'which-key'.register {
-  ['<leader>c'] = { name = 'dp_c', },
-  ['<leader>c;'] = { function() B.sel_run(M) end, 'dp_c', mode = { 'n', 'v', }, silent = true, },
-}
+function M.map()
+  require 'which-key'.register {
+    ['<leader>c'] = { name = 'dp_c', },
+    ['<leader>c;'] = { function() B.sel_run(M) end, 'dp_c', mode = { 'n', 'v', }, silent = true, },
+  }
+end
 
 return M
