@@ -1,9 +1,21 @@
 local M = {}
 
-local B = require 'dp_base'
+local sta, B = pcall(require, 'dp_base')
+
+if not sta then return print('Dp_base is required!', debug.getinfo(1)['source']) end
 
 M.source = B.getsource(debug.getinfo(1)['source'])
 M.lua = B.getlua(M.source)
+
+if B.check_plugins {
+      'folke/which-key.nvim',
+    } then
+  return
+end
+
+require 'which-key'.register {
+  ['<leader>c<f1>'] = { function() B.jump_or_edit(M.source) end, 'open lua: ' .. M.lua, mode = { 'n', 'v', }, silent = true, },
+}
 
 M.cores = 1
 M.remake_en = nil
