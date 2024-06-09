@@ -152,5 +152,5 @@ if __name__ == "__main__":
     os.system(
         "cd "
         + project_root
-        + r' & cmake -B build -G "MinGW Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 && cd build & copy compile_commands.json ..\ /y & cd ..'
+        + r' & cmake -B build -G "MinGW Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1 && cd build & copy compile_commands.json ..\ /y & timeout /t 3'
     )
