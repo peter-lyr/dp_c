@@ -2,3 +2,5 @@
 build
 CMakeLists.txt
 compile_commands.json
+.clangd
+.clang-format
