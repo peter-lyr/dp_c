@@ -34,6 +34,7 @@ M.c2cmake_py = B.get_file(M.cmake_dir, 'c2cmake.py')
 M.cbp2cmake_py = B.get_file(M.cmake_dir, 'cbp2cmake.py')
 M._clang_format = B.get_file(M.clang_format_dir, '.clang-format')
 M._clangd = B.get_file(M.clang_format_dir, '.clangd')
+M._gitignore = B.get_file(M.clang_format_dir, '.gitignore')
 
 local f = io.popen 'wmic cpu get NumberOfCores'
 if f then
@@ -298,6 +299,7 @@ function M._cmake_do(proj, force)
   end
   B.system_run('start silent', 'copy /y "%s" "%s"', B.rep(M._clang_format), B.rep(require 'plenary.path':new(proj):joinpath '.clang-format'.filename))
   B.system_run('start silent', 'copy /y "%s" "%s"', B.rep(M._clangd), B.rep(require 'plenary.path':new(proj):joinpath '.clangd'.filename))
+  B.system_run('start silent', 'copy /y "%s" "%s"', B.rep(M._gitignore), B.rep(require 'plenary.path':new(proj):joinpath '.gitignore'.filename))
 end
 
 function M.cmake()
